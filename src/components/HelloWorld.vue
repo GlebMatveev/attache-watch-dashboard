@@ -10,7 +10,7 @@
         />
       </v-col>
       <v-col class="mb-4">
-        <v-btn>hello</v-btn>
+        <v-btn @click="getList">hello</v-btn>
         <h1 class="display-2 font-weight-bold mb-3">Welcome to Vuetify</h1>
 
         <p class="subheading font-weight-regular">
@@ -76,7 +76,14 @@
 <script>
 export default {
   name: "HelloWorld",
-
+  methods: {
+    getList() {
+      console.log("test");
+      this.axios.get("https://api.publicapis.org/entries").then((response) => {
+        console.log(response.data);
+      });
+    },
+  },
   data: () => ({
     ecosystem: [
       {
