@@ -6,6 +6,13 @@ import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import VueAxios from "vue-axios";
 
+export const HTTP = axios.create({
+  baseURL: "https://rastimdoma.com/",
+  // headers: {
+  //   Authorization: "Bearer {token}",
+  // },
+});
+
 Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;

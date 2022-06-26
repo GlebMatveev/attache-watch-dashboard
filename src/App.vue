@@ -1,70 +1,21 @@
-<!-- 
-  
-  <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
-</template> -->
 <template>
   <v-app id="inspire">
     <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
-        <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
-
-        <v-btn v-for="link in links" :key="link" text>
-          {{ link }}
-        </v-btn>
+        <v-img
+          alt="Avatar"
+          src="../src/assets/header-logo-new.png"
+          class="ml-3 mr-3"
+          max-height="40"
+          max-width="150"
+        >
+        </v-img>
 
         <v-spacer></v-spacer>
 
-        <v-responsive max-width="260">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
-        </v-responsive>
+        <v-btn text href="https://electroexpress.ru" target="_blank">
+          Перейти на сайт
+        </v-btn>
       </v-container>
     </v-app-bar>
 
@@ -73,58 +24,115 @@
         <v-row>
           <v-col cols="2">
             <v-sheet rounded="lg">
-              <!-- <v-list color="transparent">
-                <v-list-item v-for="n in 5" :key="n" link>
-                  <v-list-item-content>
-                    <v-list-item-title> List Item {{ n }} </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <v-divider class="my-2"></v-divider>
-
-                <v-list-item link color="grey lighten-4">
-                  <v-list-item-content>
-                    <v-list-item-title> Refresh </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list> -->
               <v-list color="transparent">
-                <v-list-group
-                  v-for="item in items"
-                  :key="item.title"
-                  v-model="item.active"
-                  :prepend-icon="item.action"
-                  no-action
-                >
+                <!-- <v-card class="mx-auto" width="300">
+                <v-list> -->
+                <v-list-item link to="/">
+                  <v-list-item-icon>
+                    <v-icon>mdi-home</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-title>Главный экран</v-list-item-title>
+                </v-list-item>
+
+                <v-list-group :value="false" prepend-icon="mdi-cart">
                   <template v-slot:activator>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        v-text="item.title"
-                      ></v-list-item-title>
-                    </v-list-item-content>
+                    <v-list-item-title>Магазин</v-list-item-title>
                   </template>
 
-                  <v-list-item
-                    v-for="child in item.items"
-                    :key="child.title"
-                    :href="child.link"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title
-                        v-text="child.title"
-                      ></v-list-item-title>
-                    </v-list-item-content>
+                  <v-list-item link class="pad-left-72" disabled>
+                    <v-list-item-title>Покупатели</v-list-item-title>
                   </v-list-item>
-                  <v-divider class="my-2"></v-divider>
+
+                  <v-list-item link class="pad-left-72" disabled>
+                    <v-list-item-title>Заказы</v-list-item-title>
+                  </v-list-item>
                 </v-list-group>
+
+                <v-list-group :value="false" prepend-icon="mdi-bookshelf">
+                  <template v-slot:activator>
+                    <v-list-item-title>Справочники</v-list-item-title>
+                  </template>
+
+                  <v-list-item link to="/categories" class="pad-left-72">
+                    <v-list-item-title>Категории</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item link to="/subcategories" class="pad-left-72">
+                    <v-list-item-title>Подкатегории</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item link to="/properties" class="pad-left-72">
+                    <v-list-item-title>Свойства товаров</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item link to="/products" class="pad-left-72">
+                    <v-list-item-title>Товары</v-list-item-title>
+                  </v-list-item>
+
+                  <!-- <v-list-group :value="true" no-action sub-group>
+                    <template v-slot:activator>
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          {{ categoriesName }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </template>
+
+                    <v-list-item
+                      v-for="([title, icon, link], item) in categoriesItems"
+                      :key="item"
+                      link
+                      :to="link"
+                    >
+                      <v-list-item-title v-text="title"></v-list-item-title>
+
+                      <v-list-item-icon>
+                        <v-icon v-text="icon"></v-icon>
+                      </v-list-item-icon>
+                    </v-list-item>
+                  </v-list-group> -->
+                </v-list-group>
+
+                <v-list-group :value="false" prepend-icon="mdi-content-paste">
+                  <template v-slot:activator>
+                    <v-list-item-title>Контент</v-list-item-title>
+                  </template>
+
+                  <v-list-item link to="/shops" class="pad-left-72">
+                    <v-list-item-title>Магазины</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item link to="/distributors" class="pad-left-72">
+                    <v-list-item-title>Дистрибьюторы</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item link to="/news" class="pad-left-72">
+                    <v-list-item-title>Новости</v-list-item-title>
+                  </v-list-item>
+                </v-list-group>
+
+                <v-list-group :value="false" prepend-icon="mdi-cog-outline">
+                  <template v-slot:activator>
+                    <v-list-item-title>Настройки</v-list-item-title>
+                  </template>
+
+                  <v-list-item link class="pad-left-72" disabled>
+                    <v-list-item-title>Пользователи</v-list-item-title>
+                  </v-list-item>
+                </v-list-group>
+                <!-- </v-list> -->
+                <!-- </v-card> -->
               </v-list>
             </v-sheet>
           </v-col>
 
-          <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
-              <!--  -->
-              <router-link to="/Hello">Go to Home</router-link>
+          <v-col cols="10">
+            <v-sheet
+              min-height="70vh"
+              rounded="lg"
+              class="pl-10 pt-5 pb-5 pr-10"
+            >
               <router-view></router-view>
             </v-sheet>
           </v-col>
@@ -135,33 +143,35 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
-
-// export default {
-//   name: "App",
-
-//   components: {
-//     HelloWorld,
-//   },
-
-//   data: () => ({
-//     //
-//   }),
-// };
-
 export default {
   data: () => ({
-    links: ["Dashboard", "Messages", "Profile", "Updates"],
+    admins: [
+      ["Management", "mdi-account-multiple-outline"],
+      ["Settings", "mdi-cog-outline"],
+    ],
+
+    // categoriesName: "Категории",
+    // categoriesItems: [
+    //   ["Просмотр", "mdi-file-outline", "/categories/read"],
+    //   ["Создание", "mdi-plus-outline", "/categories/create"],
+    //   // ["Редактирование", "mdi-update", "/categories/update"],
+    //   // ["Удаление", "mdi-delete", "/categories/delete"],
+    // ],
+
+    // links: ["На сайт"],
     items: [
       {
         action: "mdi-cog-outline",
-        active: false,
+        active: true,
         items: [
-          { title: "Языки", link: "https://google.ru/" },
-          { title: "Роли", link: "https://google.ru/" },
+          { title: "Языки", link: "/languages" },
+          { title: "Категории", link: "/categories" },
+          { title: "HomeView", link: "/" },
+          { title: "AboutView", link: "/about" },
         ],
         title: "Справочники",
       },
+
       // {
       //   action: "mdi-school",
       //   items: [{ title: "List Item" }],
@@ -171,3 +181,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+.pad-left-72 {
+  padding-left: 72px !important;
+}
+</style>
